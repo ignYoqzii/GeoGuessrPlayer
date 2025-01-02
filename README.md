@@ -12,7 +12,7 @@
   Fetches and updates game details such as scores, rounds, and map information in real time.
 
 - **🤝 Discord Rich Presence**  
-  Displays customized game status on Discord, including player stats and game progress.
+  Displays customized game status on Discord using the informations from the GeoGuessr's API.
 
 - **🔧 User-Friendly and Robust**  
   Handles errors gracefully and provides seamless functionality across different game types and URLs.
