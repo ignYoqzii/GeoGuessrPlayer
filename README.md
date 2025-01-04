@@ -1,6 +1,6 @@
 # GeoGuessr Player, by StarZ Team (Developed by yoqzii)
 
-**A feature-rich tool to enhance your GeoGuessr gameplay with real-time integration and Discord Rich Presence. This is not affiliated with the owners of GeoGuessr. Credits to them.**
+**A feature-rich tool to enhance your GeoGuessr gameplay with real-time integration and Discord Rich Presence. ❗❗Not affiliated with the owners of GeoGuessr❗❗**
 
 ---
 
