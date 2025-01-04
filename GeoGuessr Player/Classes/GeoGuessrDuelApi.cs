@@ -33,9 +33,6 @@ namespace GeoGuessrPlayer.Classes
                 }
                 else
                 {
-                    MessageBox.Show($"Error: {response.StatusCode}");
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"Error Content: {errorContent}");
                     return null;
                 }
             }
@@ -62,6 +59,9 @@ namespace GeoGuessrPlayer.Classes
 
         [JsonProperty("options")]
         public GameOptions? Options { get; set; }
+
+        [JsonProperty("movementOptions")]
+        public MovementOptions? MovementOptions { get; set; }
     }
 
     public class GameOptions
@@ -80,4 +80,43 @@ namespace GeoGuessrPlayer.Classes
         }
     }
 
+    public class MovementOptions
+    {
+        [JsonProperty("forbidMoving")]
+        public bool? ForbidMoving { get; set; }
+
+        [JsonProperty("forbidZooming")]
+        public bool? ForbidZooming { get; set; }
+
+        [JsonProperty("forbidRotating")]
+        public bool? ForbidRotating { get; set; }
+
+        public string Category
+        {
+            get
+            {
+                bool forbidMoving = ForbidMoving ?? false;
+                bool forbidZooming = ForbidZooming ?? false;
+                bool forbidRotating = ForbidRotating ?? false;
+
+                // Determine category based on the settings
+                if (!forbidMoving && !forbidZooming && !forbidRotating)
+                {
+                    return "Moving"; // Full movement enabled
+                }
+                else if (forbidMoving && forbidZooming && forbidRotating)
+                {
+                    return "No Move"; // No movement allowed
+                }
+                else if (forbidMoving && forbidZooming && !forbidRotating)
+                {
+                    return "NMPZ"; // No move, Panning allowed, Zooming not allowed
+                }
+                else
+                {
+                    return "Custom"; // For any other unexpected combination
+                }
+            }
+        }
+    }
 }

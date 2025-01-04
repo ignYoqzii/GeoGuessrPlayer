@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Microsoft.Web.WebView2.Core;
-using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GeoGuessrPlayer
@@ -38,9 +35,6 @@ namespace GeoGuessrPlayer
                 }
                 else
                 {
-                    MessageBox.Show($"Error: {response.StatusCode}");
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"Error Content: {errorContent}");
                     return null;
                 }
             }

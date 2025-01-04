@@ -1,9 +1,82 @@
-﻿<Application x:Class="GeoGuessr_Player.App"
+﻿<Application x:Class="GeoGuessrPlayer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GeoGuessr_Player"
+             xmlns:local="clr-namespace:GeoGuessrPlayer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <RadialGradientBrush x:Key="AccentColorGradientBrush" Center="0.5,0.4" RadiusX="0.4" RadiusY="0.4" >
+            <GradientStop Color="#FF6127EC" Offset="1"/>
+            <GradientStop Color="#FFAF87FF" Offset="0.3"/>
+        </RadialGradientBrush>
+
+        <ControlTemplate x:Key="DefaultButtons" TargetType="Button">
+            <Border Name="RootElement" RenderTransformOrigin="0.5,0.5" Cursor="Hand">
+                <Border BorderBrush="AliceBlue" BorderThickness="0,0,0,0" CornerRadius="10" Background="{DynamicResource AccentColorGradientBrush}">
+                    <ContentPresenter Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.02" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.05" Duration="0:0:0.3"/>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Opacity" To="0.7" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.98" Duration="0:0:0.05"/>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.98" Duration="0:0:0.05"/>
+                                <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.05"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Border.RenderTransform>
+                    <ScaleTransform x:Name="RenderTransform"/>
+                </Border.RenderTransform>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="Image" x:Key="IconsStyle">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform x:Name="ImageTransform"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.05" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.05" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" 
+                                     To="1" 
+                                     Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" 
+                                     To="1" 
+                                     Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.8" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

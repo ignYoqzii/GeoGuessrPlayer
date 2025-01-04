@@ -3,16 +3,32 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>GeoGuessr_Player</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <StartupObject>GeoGuessr_Player.App</StartupObject>
-    <ApplicationIcon>GeoGuessrPlayer.ico</ApplicationIcon>
+    <ApplicationIcon>Resources/GeoGuessrPlayer.ico</ApplicationIcon>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+	<NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
+	
+  <ItemGroup>
+	<None Remove="Resources\Notes.png" />
+	<None Remove="Resources\Pin.png" />
+	<None Remove="Resources\PinChecked.png" />
+	<None Remove="Resources\Forward.png" />
+	<None Remove="Resources\Google.png" />
+  </ItemGroup>
 
   <ItemGroup>
-    <Content Include="GeoGuessrPlayer.ico" />
+    <Content Include="Resources\GeoGuessrPlayer.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Resource Include="Resources\Notes.png" />
+	<Resource Include="Resources\Pin.png" />
+	<Resource Include="Resources\PinChecked.png" />
+	<Resource Include="Resources\Forward.png" />
+	<Resource Include="Resources\Google.png" />
   </ItemGroup>
 
   <ItemGroup>
