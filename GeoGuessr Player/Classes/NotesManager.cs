@@ -54,94 +54,42 @@ namespace GeoGuessrPlayer.Classes
         // Method to toggle Bold for selected text or caret
         public static void ToggleBold(RichTextBox NotesTextBox)
         {
-            if (NotesTextBox.Selection.IsEmpty)
-            {
-                // If no text is selected, toggle the bold state at the caret position.
-                var currentFormat = NotesTextBox.Selection.GetPropertyValue(TextElement.FontWeightProperty);
-                if ((FontWeight)currentFormat != FontWeights.Bold)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
-                else
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
-            }
+            var currentFormat = NotesTextBox.Selection.GetPropertyValue(TextElement.FontWeightProperty);
+            if ((FontWeight)currentFormat != FontWeights.Bold)
+                NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
             else
-            {
-                // Toggle bold for the selected text
-                var currentFormat = NotesTextBox.Selection.GetPropertyValue(TextElement.FontWeightProperty);
-                if ((FontWeight)currentFormat != FontWeights.Bold)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
-                else
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
-            }
+                NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
         }
 
         // Method to toggle Italic for selected text or caret
         public static void ToggleItalic(RichTextBox NotesTextBox)
         {
-            if (NotesTextBox.Selection.IsEmpty)
-            {
-                // If no text is selected, toggle the italic state at the caret position.
-                var currentFormat = NotesTextBox.Selection.GetPropertyValue(TextElement.FontStyleProperty);
-                if ((FontStyle)currentFormat != FontStyles.Italic)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
-                else
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Normal);
-            }
+            var currentFormat = NotesTextBox.Selection.GetPropertyValue(TextElement.FontStyleProperty);
+            if ((FontStyle)currentFormat != FontStyles.Italic)
+                NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
             else
-            {
-                // Toggle italic for the selected text
-                var currentFormat = NotesTextBox.Selection.GetPropertyValue(TextElement.FontStyleProperty);
-                if ((FontStyle)currentFormat != FontStyles.Italic)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
-                else
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Normal);
-            }
+                NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Normal);
         }
 
         // Method to increase the font size of the selected text
         public static void IncreaseFontSize(RichTextBox NotesTextBox)
         {
-            if (!NotesTextBox.Selection.IsEmpty)
+            var currentSize = NotesTextBox.Selection.GetPropertyValue(TextElement.FontSizeProperty);
+            if (currentSize != DependencyProperty.UnsetValue)
             {
-                var currentSize = NotesTextBox.Selection.GetPropertyValue(TextElement.FontSizeProperty);
-                if (currentSize != DependencyProperty.UnsetValue)
-                {
-                    double newSize = (double)currentSize + 2;  // Increase by 2 (adjust as needed)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, newSize);
-                }
-            }
-            else
-            {
-                // Increase the font size at the caret position
-                var currentSize = NotesTextBox.Selection.GetPropertyValue(TextElement.FontSizeProperty);
-                if (currentSize != DependencyProperty.UnsetValue)
-                {
-                    double newSize = (double)currentSize + 2;  // Increase by 2 (adjust as needed)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, newSize);
-                }
+                double newSize = (double)currentSize + 2;  // Increase by 2 (adjust as needed)
+                NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, newSize);
             }
         }
 
         // Method to decrease the font size of the selected text
         public static void DecreaseFontSize(RichTextBox NotesTextBox)
         {
-            if (!NotesTextBox.Selection.IsEmpty)
+            var currentSize = NotesTextBox.Selection.GetPropertyValue(TextElement.FontSizeProperty);
+            if (currentSize != DependencyProperty.UnsetValue)
             {
-                var currentSize = NotesTextBox.Selection.GetPropertyValue(TextElement.FontSizeProperty);
-                if (currentSize != DependencyProperty.UnsetValue)
-                {
-                    double newSize = (double)currentSize - 2;  // Decrease by 2 (adjust as needed)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, newSize);
-                }
-            }
-            else
-            {
-                // Decrease the font size at the caret position
-                var currentSize = NotesTextBox.Selection.GetPropertyValue(TextElement.FontSizeProperty);
-                if (currentSize != DependencyProperty.UnsetValue)
-                {
-                    double newSize = (double)currentSize - 2;  // Decrease by 2 (adjust as needed)
-                    NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, newSize);
-                }
+                double newSize = (double)currentSize - 2;  // Decrease by 2 (adjust as needed)
+                NotesTextBox.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, newSize);
             }
         }
     }
