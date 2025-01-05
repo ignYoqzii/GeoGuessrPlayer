@@ -28,18 +28,9 @@
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **.NET Runtime/SDK**: [Download .NET](https://dotnet.microsoft.com/)
 - **GeoGuessr Account**: Required to play and utilize the tool effectively.
-
-### 🔍 How It Works
-- **Game Detection**:
-The tool monitors the active GeoGuessr URL and identifies game modes using predefined patterns.
-
-- **Fetching Game Data**:
-The integration uses the GeoGuessr API to retrieve session data like rounds, scores, and player details.
-
-- **Discord Presence Update**:
-Updates your Discord status dynamically with personalized game information.
+  
+- **Installation**: Simply download GeoGuessrPlayerSetup{X64 OR X86}.msi from the release page.
 
 ### 🤖 Built With
 - C# and .NET for the core logic.
