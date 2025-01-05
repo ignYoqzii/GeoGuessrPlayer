@@ -14,6 +14,9 @@
 - **🤝 Discord Rich Presence**  
   Displays customized game status on Discord using informations from GeoGuessr's API.
 
+- **📝 Notes **
+  Create notes to memorize informations easily and have access to them from a side panel.
+
 - **🔧 User-Friendly and Robust**  
   Handles errors gracefully and provides seamless functionality across different game types and URLs.
 
