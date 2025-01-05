@@ -42,6 +42,3 @@ Updates your Discord status dynamically with personalized game information.
 - C# and .NET for the core logic.
 - WPF for a responsive and user-friendly interface.
 - GeoGuessr API for game data integration.
-
-### 📝 License
-This project is licensed under the MIT License. See the LICENSE file for details.
