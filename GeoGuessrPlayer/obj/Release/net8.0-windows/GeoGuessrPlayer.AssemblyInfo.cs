@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeoGuessrPlayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac6be07e1b22e5ee3cac03b77b69d51a31e8be5f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89568470c03ea98626fb57a4cbb771f67f9652ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeoGuessrPlayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeoGuessrPlayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

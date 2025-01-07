@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Visual Studio\\GeoGuessrPlayer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|d:\\visual studio\\geoguessrplayer\\geoguessrplayer\\classes\\discordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|solutionrelative:geoguessrplayer\\classes\\discordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|d:\\visual studio\\geoguessrplayer\\geoguessrplayer\\classes\\urlchecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|solutionrelative:geoguessrplayer\\classes\\urlchecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|d:\\visual studio\\geoguessrplayer\\geoguessrplayer\\classes\\logmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|solutionrelative:geoguessrplayer\\classes\\logmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|d:\\visual studio\\geoguessrplayer\\geoguessrplayer\\classes\\discordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A07CBDB6-AA7E-4EE3-A9EB-1C52500DE596}|GeoGuessrPlayer\\GeoGuessrPlayer.csproj|solutionrelative:geoguessrplayer\\classes\\discordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,15 +22,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "DiscordService.cs",
               "DocumentMoniker": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\DiscordService.cs",
               "RelativeDocumentMoniker": "GeoGuessrPlayer\\Classes\\DiscordService.cs",
@@ -43,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "LogManager.cs",
               "DocumentMoniker": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\LogManager.cs",
               "RelativeDocumentMoniker": "GeoGuessrPlayer\\Classes\\LogManager.cs",
@@ -56,13 +60,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "URLChecker.cs",
               "DocumentMoniker": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\URLChecker.cs",
               "RelativeDocumentMoniker": "GeoGuessrPlayer\\Classes\\URLChecker.cs",
               "ToolTip": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\URLChecker.cs",
               "RelativeToolTip": "GeoGuessrPlayer\\Classes\\URLChecker.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAABFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-07T04:20:47.312Z",
               "EditorCaption": ""

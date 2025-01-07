@@ -18,6 +18,7 @@
             "https://www.geoguessr.com/team-duels/", // Team duels
             "https://www.geoguessr.com/battle-royale/", // Battle Royale mode
             "https://www.geoguessr.com/party/", // Party mode
+            "https://www.geoguessr.com/live-challenge/", // Live Challenge mode
         ];
 
         public static string GetGameModeFromUrl(string url)
