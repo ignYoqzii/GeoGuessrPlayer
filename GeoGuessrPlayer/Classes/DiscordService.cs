@@ -41,7 +41,7 @@ namespace GeoGuessrPlayer.Classes
                     new Button() 
                     { 
                         Label = "Download the App", 
-                        Url = "https://github.com/ignYoqzii/GeoGuessrPlayer/releases",
+                        Url = "https://github.com/ignYoqzii/GeoGuessrPlayer/releases", // Not showing and I don't know why...
                     }
                 ]
             });
