@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,6 +34,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "URLChecker.cs",
+              "DocumentMoniker": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\URLChecker.cs",
+              "RelativeDocumentMoniker": "GeoGuessrPlayer\\Classes\\URLChecker.cs",
+              "ToolTip": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\URLChecker.cs",
+              "RelativeToolTip": "GeoGuessrPlayer\\Classes\\URLChecker.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:08:21.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "DiscordService.cs",
               "DocumentMoniker": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\DiscordService.cs",
@@ -42,8 +55,7 @@
               "RelativeToolTip": "GeoGuessrPlayer\\Classes\\DiscordService.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAAACsAAAB9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T04:21:26.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-07T04:21:26.692Z"
             },
             {
               "$type": "Document",
@@ -53,22 +65,9 @@
               "RelativeDocumentMoniker": "GeoGuessrPlayer\\Classes\\LogManager.cs",
               "ToolTip": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\LogManager.cs",
               "RelativeToolTip": "GeoGuessrPlayer\\Classes\\LogManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAChAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-07T04:21:16.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "URLChecker.cs",
-              "DocumentMoniker": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\URLChecker.cs",
-              "RelativeDocumentMoniker": "GeoGuessrPlayer\\Classes\\URLChecker.cs",
-              "ToolTip": "D:\\Visual Studio\\GeoGuessrPlayer\\GeoGuessrPlayer\\Classes\\URLChecker.cs",
-              "RelativeToolTip": "GeoGuessrPlayer\\Classes\\URLChecker.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T04:20:47.312Z",
               "EditorCaption": ""
             }
           ]
