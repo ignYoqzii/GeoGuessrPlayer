@@ -1,20 +1,30 @@
 ﻿using DiscordRPC;
+using System.Windows;
 
 namespace GeoGuessrPlayer.Classes
 {
     public class DiscordService
     {
-        private readonly DiscordRpcClient discordClient;
-        public DiscordService(string clientId)
+        readonly static string clientId = "1324155732198686820";
+        public static DiscordRpcClient DiscordClient = new(clientId);
+
+        public static void InitializeDiscordRichPresence(string defaultStatus)
         {
-            discordClient = new DiscordRpcClient(clientId);
-            discordClient.Initialize();
+            try
+            {
+                DiscordClient.Initialize();
+                UpdatePresence("Playing GeoGuessr", defaultStatus);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error initializing Discord Rich Presence: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         // Set or update the Discord Rich Presence
-        public void UpdatePresence(string details, string state)
+        public static void UpdatePresence(string details, string state)
         {
-            discordClient.SetPresence(new RichPresence
+            DiscordClient.SetPresence(new RichPresence
             {
                 Details = details,
                 State = state,
@@ -25,14 +35,22 @@ namespace GeoGuessrPlayer.Classes
                     LargeImageText = "GeoGuessr Player",
                     SmallImageKey = "starzlogo",
                     SmallImageText = "By StarZ Team"
-                }
+                },
+                Buttons =
+                [
+                    new Button() 
+                    { 
+                        Label = "Download the App", 
+                        Url = "https://github.com/ignYoqzii/GeoGuessrPlayer/releases",
+                    }
+                ]
             });
         }
 
         // Dispose of the Discord client
-        public void Dispose()
+        public static void Dispose()
         {
-            discordClient.Dispose();
+            DiscordClient.Dispose();
         }
     }
 }

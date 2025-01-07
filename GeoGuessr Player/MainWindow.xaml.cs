@@ -13,8 +13,7 @@ namespace GeoGuessrPlayer
 {
     public partial class MainWindow : Window
     {
-        private DiscordService? discordService;
-        private string defaultStatus = "Exploring the World";
+        private readonly string defaultStatus = "Let's explore the world!";
         private readonly string defaultUrl = "https://www.geoguessr.com/";
 
         private DispatcherTimer? gameInfoTimer; // Timer for game info refresh
@@ -26,7 +25,7 @@ namespace GeoGuessrPlayer
         {
             InitializeComponent();
             InitializeWebView();
-            InitializeDiscordRichPresence();
+            DiscordService.InitializeDiscordRichPresence(defaultStatus);
             NotesManager.LoadNotes(NotesTextBox);
         }
 
@@ -64,19 +63,6 @@ namespace GeoGuessrPlayer
             return null;
         }
 
-        private void InitializeDiscordRichPresence()
-        {
-            try
-            {
-                discordService = new DiscordService("1324155732198686820");
-                discordService.UpdatePresence("Playing GeoGuessr", defaultStatus);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error initializing Discord Rich Presence: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
         private async void WebView_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
             try
@@ -90,25 +76,26 @@ namespace GeoGuessrPlayer
                 string? ncfaToken = await ExtractNcfaCookieAsync();
                 if (string.IsNullOrEmpty(ncfaToken))
                 {
-                    discordService?.UpdatePresence("Error", "Failed to extract user token.");
+                    DiscordService.UpdatePresence("Error", "Failed to extract user token.");
                     return;
                 }
 
                 // Stop the timer if moving away from a game mode
-                if (currentGameMode != null && !url.StartsWith("https://www.geoguessr.com/game/") &&
-                    !url.StartsWith("https://www.geoguessr.com/duels/") || url.StartsWith("https://www.geoguessr.com/team-duels/"))
+                if (currentGameMode != null &&
+                    URLChecker.SingleplayerGameUrls.All(u => !url.StartsWith(u)) && // No singleplayer URL matches
+                    URLChecker.MultiplayerGameUrls.All(u => !url.StartsWith(u)))   // No multiplayer URL matches
                 {
                     gameInfoTimer?.Stop();
                     currentGameMode = null;
                 }
 
                 // Handle game modes based on URL
-                if (url.StartsWith("https://www.geoguessr.com/game/")) // Singleplayer modes
+                if (URLChecker.SingleplayerGameUrls.Any(url.StartsWith)) // Singleplayer modes
                 {
                     currentGameMode = "Singleplayer";
                     StartGameInfoTimer(url, ncfaToken);
                 }
-                else if (url.StartsWith("https://www.geoguessr.com/duels/") || url.StartsWith("https://www.geoguessr.com/team-duels/")) // Multiplayer duels modes
+                else if (URLChecker.MultiplayerGameUrls.Any(url.StartsWith)) // Multiplayer modes
                 {
                     currentGameMode = "Multiplayer";
                     StartGameInfoTimer(url, ncfaToken);
@@ -156,52 +143,36 @@ namespace GeoGuessrPlayer
         // Handle Singleplayer game mode
         private async Task HandleSinglePlayerModeAsync(string url, string ncfaToken)
         {
-            string gameToken = GeoGuessrGameApi.ExtractGameTokenFromUrl(url);
+            string gameToken = GeoGuessrSingleplayerAPI.ExtractSingleplayerTokenFromUrl(url);
             if (string.IsNullOrEmpty(gameToken)) return;
 
-            var gameInfo = await GeoGuessrGameApi.FetchGameInfoAsync(gameToken, ncfaToken);
-            if (gameInfo != null)
+            var singleplayerInfo = await GeoGuessrSingleplayerAPI.FetchSingleplayerInfoAsync(gameToken, ncfaToken);
+            if (singleplayerInfo != null)
             {
-                discordService?.UpdatePresence($"Playing {gameInfo.GameType}, logged in as {gameInfo.Player?.Nickname}",
-                                               $"Round: {gameInfo.Round}/{gameInfo.RoundCount}, Score: {gameInfo.Player?.totalScore?.Amount}, Map: {gameInfo.MapName}");
+                DiscordService.UpdatePresence($"Playing {singleplayerInfo.GameType}, logged in as {singleplayerInfo.Player?.Nickname}",
+                                               $"Round: {singleplayerInfo.Round}/{singleplayerInfo.RoundCount}, Score: {singleplayerInfo.Player?.totalScore?.Amount}, Map: {singleplayerInfo.MapName}");
             }
         }
 
         // Handle Multiplayer game mode (e.g. duels)
         private async Task HandleMultiplayerModeAsync(string url, string ncfaToken)
         {
-            string gameToken = GeoGuessrDuelApi.ExtractDuelGameTokenFromUrl(url);
+            string gameToken = GeoGuessrMultiplayerAPI.ExtractMultiplayerTokenFromUrl(url);
             if (string.IsNullOrEmpty(gameToken)) return;
 
-            var duelgameInfo = await GeoGuessrDuelApi.FetchDuelGameInfoAsync(gameToken, ncfaToken);
-            if (duelgameInfo != null)
+            var multiplayerInfo = await GeoGuessrMultiplayerAPI.FetchMultiplayerInfoAsync(gameToken, ncfaToken);
+            if (multiplayerInfo != null)
             {
-                discordService?.UpdatePresence($"Playing {duelgameInfo.Options?.GameType}",
-                                               $"Round: {duelgameInfo.CurrentRoundNumber}, Category: {duelgameInfo.MovementOptions!.Category}");
+                DiscordService.UpdatePresence($"Playing {multiplayerInfo.Options?.GameType}",
+                                               $"Round: {multiplayerInfo.CurrentRoundNumber}, Category: {multiplayerInfo.MovementOptions!.Category}");
             }
         }
 
         // Handle non-specific game modes
         private void HandleOtherGameModes(string url)
         {
-            string mode = GetGameModeFromUrl(url);
-            discordService?.UpdatePresence($"Playing {mode}", defaultStatus);
-        }
-
-        private static string GetGameModeFromUrl(string url)
-        {
-            if (url == "https://www.geoguessr.com/") return "GeoGuessr";
-
-            if (url.Contains("/singleplayer")) return "Campaign";
-            if (url.Contains("/maps/community")) return "Community Maps";
-            if (url.Contains("/maps")) return "Classic Maps";
-            if (url.Contains("/multiplayer/teams")) return "Ranked Team Duels";
-            if (url.Contains("/multiplayer/unranked-teams")) return "Unranked Team Duels";
-            if (url.Contains("/multiplayer/battle-royale-countries")) return "Battle Royale: Countries";
-            if (url.Contains("/multiplayer/battle-royale-distance")) return "Battle Royale: Distance";
-            if (url.Contains("/multiplayer")) return "Duels";
-
-            return "Unknown Mode";
+            string mode = URLChecker.GetGameModeFromUrl(url);
+            DiscordService.UpdatePresence($"Playing {mode}", defaultStatus);
         }
 
         private void UpdateButtonStates()
@@ -221,14 +192,6 @@ namespace GeoGuessrPlayer
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             WebView.Reload();
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            NotesManager.SaveNotes(NotesTextBox);
-            gameInfoTimer?.Stop();
-            discordService?.Dispose();
-            base.OnClosed(e);
         }
 
         private void NotesPage_MouseEnter(object sender, MouseEventArgs e)
@@ -324,6 +287,14 @@ namespace GeoGuessrPlayer
                 NotesManager.DecreaseFontSize(NotesTextBox);
                 e.Handled = true; // Prevent the default behavior (like typing '-')
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            NotesManager.SaveNotes(NotesTextBox);
+            gameInfoTimer?.Stop();
+            DiscordService.Dispose();
+            base.OnClosed(e);
         }
     }
 }
